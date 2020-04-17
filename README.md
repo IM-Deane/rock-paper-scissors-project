@@ -8,7 +8,6 @@ Future versions will see the implementation of a front-end GUI as I learn more a
 
 Current Version: 1.0
 
-
 Version History:
 
 Version 1.0: 
