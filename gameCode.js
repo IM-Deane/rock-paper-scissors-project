@@ -16,22 +16,50 @@ function computerPlay() {
 
 // Function displays the player and computer rolls based on parameters
 function displayRolls(playerSelection, computerSelection) {
+    // Call parent node
+    const parentContent = document.querySelector('#output');
+
+    // Player element
+    const playerRoll = document.createElement('p');
+    playerRoll.id = 'playerRoll'
+    playerRoll.style.fontWeight = 'bold';
+    playerRoll.style.color = 'red';
+
+    // Computer element
+    const computerRoll = document.createElement('p');
+    computerRoll.id = 'computerRoll'
+    computerRoll.style.fontWeight = 'bold';
+    computerRoll.style.color = 'blue';
+
     // List of player rolls
     if (playerSelection == "Rock") {
-        console.log("PLAYER: Rock");
+
+        playerRoll.innerHTML = "PLAYER: Rock";
+
     } else if (playerSelection == "Paper") {
-        console.log("PLAYER: Paper");
-    } else if (playerSelection == "Scissors") {
-        console.log("PLAYER: Scissors");
+
+        playerRoll.innerHTML = "PLAYER: PAPER";
+
+    } else {
+        playerRoll.innerHTML = "PLAYER: SCISSORS";
     }
     // Computer rolls
     if (computerSelection == "Rock") {
-        console.log("COMPUTER: Rock");
+
+        computerRoll.innerHTML = "COMPUTER: Rock";
+
     } else if (computerSelection == "Paper") {
-        console.log("COMPUTER: Paper");
-    } else if (computerSelection == "Scissors") {
-        console.log("COMPUTER: Scissors");
+
+        computerRoll.innerHTML = "COMPUTER: PAPER";
+
+    } else {
+
+        computerRoll.innerHTML = "COMPUTER: Rock";
     }
+
+    // Add rolls to parent node
+    parentContent.appendChild(playerRoll);
+    parentContent.appendChild(computerRoll);
 }
 
 // Function displays the round winner using provided parameters
@@ -95,6 +123,10 @@ function computeRoundWinner(playerSelection, computerSelection) {
 /* Function will accept the winner and selections of the round. 
  * It will then compute the winner and display the appropriate message */
 function displayRoundWinner(winner, playerSelection, computerSelection) {
+    // Create element to display text on
+    const textOutput = document.createElement('p');
+    textOutput.style.fontWeight = 'bold';
+
     // Player wins round
     if (winner == 0) {
         // Player rolled rock
@@ -253,15 +285,8 @@ function playerInput() {
         });
     });
 }
+
 // Starts the game
 playerInput();
 
-// // Find parent node
-// const container = document.querySelector('#content');
-// // Create output container
-// const result = document.createElement('div');
-// result.id = 'output';
-// result.textContent = "[INSERT TEXT]";
 
-// // Add to parent
-// container.appendChild(result);
