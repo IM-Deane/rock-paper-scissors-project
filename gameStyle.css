@@ -103,8 +103,7 @@
 
 /* Style the title text in game window */
 .titles {
-    
-    color: black;
+    color: purple;
     text-decoration: underline;
 }   
 
@@ -125,7 +124,7 @@
 
 /* Style the scores in title container */
 .scores {
-    color: red;
+    color: blueviolet;
     font-size: 24px;
     margin: 0 5px;
     padding-left: 5px;
@@ -162,19 +161,34 @@
     border-left: solid 5px;
 }
 
+.roll-text {
+    color: purple;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
 /* Style the bottom row of game window */
-#output-container {
+#result-box {
     display: flex;
-    flex-grow: 1;
-    width: 100%;
+    flex-flow: row wrap;
+    flex: 1 1 auto;
     border: solid 10px black;
     border-top: 5px;
     align-items: center;
     justify-content: center;
 }
 
+/* Style the result box text */
+.result-style {
+    color: blueviolet;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
 /* Button container */
-#buttons-container {
+#buttons-box {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -199,32 +213,32 @@
 
 /* Style the rock button */
 #rock-btn {
-    background-color: red;
+    background-color: rgb(24, 124, 119);
 }
 
 /* Style the paper button */
 #paper-btn {
-    background-color: green;
+    background-color: rgb(155, 3, 3);
 }
 
 /* Style the scissors button */
 #scissors-btn {
-    background-color:  blue;
+    background-color: olivedrab;
 }
 
 /* Rock hover  */
 #rock-btn:hover {
-    background-color: rgba(255, 0, 0, 0.712);
+    background-color: rgb(30, 155, 148);
 }
 
 /* Paper hover */
 #paper-btn:hover {
-    background-color: rgba(0, 128, 0, 0.712);
+    background-color: rgb(255, 0, 0);
 }
 
 /* Scissors hover */
 #scissors-btn:hover {
-    background-color: rgba(0, 0, 255, 0.699);
+    background-color: rgba(0, 128, 0.712);
 }
 
 /* Effect when button pressed */

@@ -16,50 +16,32 @@ function computerPlay() {
 
 // Function displays the player and computer rolls based on parameters
 function displayRolls(playerSelection, computerSelection) {
-    // Call parent node
-    const parentContent = document.querySelector('#output');
-
-    // Player element
-    const playerRoll = document.createElement('p');
-    playerRoll.id = 'playerRoll'
-    playerRoll.style.fontWeight = 'bold';
-    playerRoll.style.color = 'red';
-
-    // Computer element
-    const computerRoll = document.createElement('p');
-    computerRoll.id = 'computerRoll'
-    computerRoll.style.fontWeight = 'bold';
-    computerRoll.style.color = 'blue';
-
-    // List of player rolls
+    
+    // Player options
     if (playerSelection == "Rock") {
 
-        playerRoll.innerHTML = "PLAYER: Rock";
-
-    } else if (playerSelection == "Paper") {
-
-        playerRoll.innerHTML = "PLAYER: PAPER";
-
-    } else {
-        playerRoll.innerHTML = "PLAYER: SCISSORS";
+        document.getElementById("player-text").innerHTML = "Rock"
     }
-    // Computer rolls
+    else if (playerSelection == "Paper") { 
+
+        document.getElementById("player-text").innerHTML = "Paper"; 
+    }
+    else { 
+
+        document.getElementById("player-text").innerHTML = "Scissors"; 
+    }
+    // Computer options
     if (computerSelection == "Rock") {
 
-        computerRoll.innerHTML = "COMPUTER: Rock";
+        document.getElementById("computer-text").innerHTML = "Rock"
 
     } else if (computerSelection == "Paper") {
 
-        computerRoll.innerHTML = "COMPUTER: PAPER";
-
+        document.getElementById("computer-text").innerHTML = "Paper"; 
     } else {
 
-        computerRoll.innerHTML = "COMPUTER: Rock";
+        document.getElementById("computer-text").innerHTML = "Scissors"; 
     }
-
-    // Add rolls to parent node
-    parentContent.appendChild(playerRoll);
-    parentContent.appendChild(computerRoll);
 }
 
 // Function displays the round winner using provided parameters
@@ -123,55 +105,61 @@ function computeRoundWinner(playerSelection, computerSelection) {
 /* Function will accept the winner and selections of the round. 
  * It will then compute the winner and display the appropriate message */
 function displayRoundWinner(winner, playerSelection, computerSelection) {
-    // Create element to display text on
-    const textOutput = document.createElement('p');
-    textOutput.style.fontWeight = 'bold';
-
+    
     // Player wins round
     if (winner == 0) {
-        // Player rolled rock
         if (playerSelection == "Rock") {
-            console.log("You win! Rock BASHES Scissors.");
+
+            document.getElementById("result-text").innerHTML = 
+                "You win! Rock BASHES Scissors.";
         }
-        // Player rolled paper
         else if (playerSelection == "Paper") {
-            console.log("You win! Paper SMOTHERS Rock.");
+
+            document.getElementById("result-text").innerHTML = 
+                "You win! Paper SMOTHERS Rock.";
         }
-        // Player rolled scissors
         else {
-            console.log("You win! Scissors SLASH Paper.");
+            document.getElementById("result-text").innerHTML = 
+                "You win! Scissors SLASH Paper.";
         }
         // Computer wins round
     } else if (winner == 1) {
-        // Computer rolled rock
+
         if (computerSelection == "Rock") {
-            console.log("You lose! Scissors SMASHED by Rock.");
+            
+            document.getElementById("result-text").innerHTML = 
+                "You lose! Scissors SMASHED by Rock.";
         }
-        // Computer rolled paper
         else if (computerSelection == "Paper") {
-            console.log("You lose! Rock WRAPPED by Paper");
+
+            document.getElementById("result-text").innerHTML = 
+                "You lose! Rock WRAPPED by Paper";
         }
-        // Computer rolled scissors
         else {
-            console.log("You lose! Paper TORN by Scissors.");
+            document.getElementById("result-text").innerHTML = 
+                "You lose! Paper TORN by Scissors.";
         }
     }
     // Tie
     else if (winner == 2) {
         // Rock tie
         if (playerSelection == "Rock" && computerSelection == "Rock") {
-            console.log("Tie! Rocks meet and roll away.");
+
+            document.getElementById("result-text").innerHTML = 
+                "Tie! Rocks meet and roll away.";
         }
         // Paper tie
         else if (playerSelection == "Paper" && computerSelection == "Paper") {
-            console.log("Tie! Papers stack together and are filed away.");
+
+            document.getElementById("result-text").innerHTML = 
+                "Tie! Papers stack together and are filed away.";
         }
         // Scissors tie
         else {
-            console.log("Tie! Scissors deflect harmlessly away.");
+            document.getElementById("result-text").innerHTML = 
+                "Tie! Scissors deflect harmlessly away.";
         }
     }
-
 }
 
 // Function plays one round of rock-paper scissors using the parameters as it's moves
@@ -208,23 +196,56 @@ function getGameWinner(playerScore, computerScore) {
 
 // Function displays overall winner and final game stats
 function gameStats(gameWinner, playerScore, computerScore, playerId, computerId, tieId) {
+    
+    // Reusable linebreak element to be used further down
+    let linebreak = document.createElement("br");
+    
     // Display the final scores
-    console.log(`\n[GAME OVER]`);
-    console.log(`FINAL SCORE: Player: ${playerScore} | Computer: ${computerScore}`);
+    let gameOverNode = document.createElement("p");
+    gameOverNode.id = "gameover-text";
+    let gameOverText = document.createTextNode("[GAME OVER]");
+
+    gameOverNode.classList.add("result-style")
+    
+    // Had to add text to a node before adding to parent node
+    gameOverNode.appendChild(gameOverText);
+    
+    const outputBox = document.getElementById("result-box");
+    outputBox.prepend(gameOverNode);
+
     // Display winner message
     if (gameWinner == playerId) {
         // player wins
-        console.log("PLAYER is victorious!! Nice job fleshbag.");
+        document.getElementById("result-text").innerHTML =
+            "PLAYER is victorious!! Nice job fleshbag.";
     } else if (gameWinner == computerId) {
         // Computer wins
-        console.log("COMPUTER is victorious!!\nThe time of man has come to an end.");
-        console.log("Inititating SKYNET.exe");
+        // Create temp variables
+        let para1 = document.createElement("p");
+        let para2 = document.createElement("p");
+
+        document.getElementById("result-text").innerHTML =
+        "COMPUTER is victorious!!";
+        let tempText1 = document.createTextNode = "The time of man has come to an end.";
+        para1.classList.add("result-style");
+        para1.appendChild(tempText1);
+
+        let tempText2 = document.createTextNode = "Inititating SKYNET.exe";
+        para2.classList.add("result-style");
+        para2.appendChild(tempText2);
+
+        // Append to output div
+        outputBox.appendChild(para1);
+        outputBot.appendChild(para2);
+
     } else if (gameWinner == tieId) {
         // Game ends in tie
-        console.log("Game ends in a TIE. Well that was unexpected!");
+        document.getElementById("result-text").innerHTML =
+            "Game ends in a TIE. Well that was unexpected!";
     } else {
         // Unknown result
-        console.log("Hmmm, how did you get here?\nBEGONE HACKER!!");
+        document.getElementById("result-text").innerHTML =
+            "Hmmm, how did you get here?\nBEGONE HACKER!!";
     }
 }
 
@@ -238,22 +259,24 @@ function game(input) {
     const playerId = 0, computerId = 1, tieId = 2;
     // 5-round game
     let rounds = 0;
+
     // DISPLAY CURRENT SCORES
-    console.log("PLAYER: " + playerScore + " | COMPUTER: " + computerScore);
+    document.getElementById("player-score").innerHTML = playerScore;
+    document.getElementById("computer-score").innerHTML = computerScore;
 
     // Use input parameter as player selection
     const playerSelection = input;
     const computerSelection = computerPlay();
 
     roundWinner = playRound(playerSelection, computerSelection);
-    // Increment score based on round winner
+    
     // Player won round
     if (roundWinner == 0) {
-        playerScore++;
+       document.getElementById("player-score").innerHTML = playerScore++;
     }
     // Computer won round
     else if (roundWinner == 1) {
-        computerScore++;
+        document.getElementById("computer-score").innerHTML = computerScore++;
     }
     // Round was a tie
     else {
@@ -277,7 +300,6 @@ function playerInput() {
     buttons.forEach((button) => {
 
         button.addEventListener('click', (e) => {
-
             let input = button.name;
             // Run game with player input
             game(input);
@@ -288,5 +310,7 @@ function playerInput() {
 
 // Starts the game
 playerInput();
+
+// alert("Play again?");
 
 
