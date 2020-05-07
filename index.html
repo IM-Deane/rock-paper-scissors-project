@@ -14,7 +14,7 @@
             <img id="banner-logo" src="images/rock-paper-scissors-icon.jpeg" alt="Rock-Paper-Scissors-logo">
         </div>
         <div id="banner-text-box">
-            <h1 id="banner-text">TRIZZEY'S FANTASTIC ROCK-PAPER-SCISSORS GAME</h1>
+            <h1 id="banner-text">A FANTASTIC ROCK-PAPER-SCISSORS GAME</h1>
         </div>
         <div id="logo-box">
             <img id="banner-logo" src="images/rock-paper-scissors-icon.jpeg" alt="Rock-Paper-Scissors-logo">
@@ -46,15 +46,26 @@
             <div id="game-container">
                 <!--GAME CONTENTS-->
                 <div id="player-side" class="game-ports">
-                    <p id="player-text" class="roll-text">ROCK</p>
+                    <p id="player-text" class="roll-text"></p>
                 </div>
                 <div id="computer-side" class="game-ports">
-                    <p id="computer-text" class="roll-text">PAPER</p>
+                    <p id="computer-text" class="roll-text"></p>
                 </div>
             </div>
             <!--Bottom row of game-window-->
             <div id="result-box">
-                <p id="result-text" class="result-style">PLAYER HAS WON ROUND</p>
+                <!-- Top section of result box-->
+                <div id="results-top" class="result-style">
+                    <p id="current-round" class="result-style">ROUND: 
+                        <span id="round-number" class="result-style">1</span>
+                    </p>
+                    <p id ="round-winner" name="" class="result-style"></p>
+                </div>
+                <!-- Bottom section of result box-->
+                <div id="results-bottom">
+                    <p id="result-text" class="result-style"></p>
+                    <p id="imminent-win" class="result-style"></p>
+                </div>
             </div>
         </div>
         <!-- Button box-->
@@ -62,6 +73,8 @@
             <button name="Rock" id="rock-btn" class="buttons">ROCK</button>
             <button name="Paper" id="paper-btn" class="buttons">PAPER</button>
             <button name="Scissors" id="scissors-btn" class="buttons">SCISSORS</button>
+            <button id="newgame-btn" class="buttons">NEW GAME</button>
+
         </div>
     </div>
 

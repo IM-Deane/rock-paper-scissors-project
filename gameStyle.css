@@ -74,6 +74,7 @@
 /* Style the top row of game window */
 #title-container {
     display: flex;
+
     justify-content: center;
     border: solid 10px black;
     border-bottom: 5px;
@@ -97,6 +98,7 @@
 
 /* Style the icons */
 .icons {
+    flex-shrink: inherit;
     height: 50px;
     margin: 0 5px;
 }
@@ -110,8 +112,9 @@
 /* Style player title box */
 #player-box {
     display: flex;
-    flex-grow: 2;
+    flex-shrink: 1;
     border-right: solid 5px;
+    width: 50%;
 }
 
 /* Style computer title box */
@@ -119,7 +122,7 @@
     display: flex;
     flex-shrink: 1;
     border-left: solid 5px;
-    padding-left: 4px;
+    width: 50%;
 }
 
 /* Style the scores in title container */
@@ -133,8 +136,6 @@
 /* Style the inner portion of game viewport */
 #game-container {
     display: flex;
-    flex-grow: 2;
-    height: 50%;
     border: solid 10px black;
 }
 
@@ -171,12 +172,33 @@
 /* Style the bottom row of game window */
 #result-box {
     display: flex;
-    flex-flow: row wrap;
-    flex: 1 1 auto;
+    flex-direction: column;
+    flex: 1 2 auto;
     border: solid 10px black;
-    border-top: 5px;
+    border-top: 2px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Style top section of result-box */
+#results-top {
+    display: flex;
+    flex: 1 1;
+    align-items: center;
+    border-bottom: solid 5px black;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Style top section of result-box */
+#results-bottom {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex: 1 1;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 /* Style the result box text */
@@ -185,6 +207,18 @@
     font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;
+}
+
+/* Style text of current round */
+#current-round  {
+    justify-self: flex-start;
+}
+
+/* Style text of round winner */
+#round-winner {
+    justify-self: flex-end;
+    padding-left: 30px;
+    
 }
 
 /* Button container */
@@ -226,6 +260,11 @@
     background-color: olivedrab;
 }
 
+/* Style the new game button */
+#newgame-btn {
+    background-color: purple;
+}
+
 /* Rock hover  */
 #rock-btn:hover {
     background-color: rgb(30, 155, 148);
@@ -239,6 +278,11 @@
 /* Scissors hover */
 #scissors-btn:hover {
     background-color: rgba(0, 128, 0.712);
+}
+
+/* New game hover */
+#newgame-btn:hover {
+    background-color: rgb(172, 0, 172);
 }
 
 /* Effect when button pressed */

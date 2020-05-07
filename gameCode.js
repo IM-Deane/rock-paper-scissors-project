@@ -16,19 +16,19 @@ function computerPlay() {
 
 // Function displays the player and computer rolls based on parameters
 function displayRolls(playerSelection, computerSelection) {
-    
+
     // Player options
     if (playerSelection == "Rock") {
 
         document.getElementById("player-text").innerHTML = "Rock"
     }
-    else if (playerSelection == "Paper") { 
+    else if (playerSelection == "Paper") {
 
-        document.getElementById("player-text").innerHTML = "Paper"; 
+        document.getElementById("player-text").innerHTML = "Paper";
     }
-    else { 
+    else {
 
-        document.getElementById("player-text").innerHTML = "Scissors"; 
+        document.getElementById("player-text").innerHTML = "Scissors";
     }
     // Computer options
     if (computerSelection == "Rock") {
@@ -37,280 +37,260 @@ function displayRolls(playerSelection, computerSelection) {
 
     } else if (computerSelection == "Paper") {
 
-        document.getElementById("computer-text").innerHTML = "Paper"; 
+        document.getElementById("computer-text").innerHTML = "Paper";
     } else {
 
-        document.getElementById("computer-text").innerHTML = "Scissors"; 
+        document.getElementById("computer-text").innerHTML = "Scissors";
     }
 }
 
-// Function displays the round winner using provided parameters
+// Compare rolls and then determine round winner
 function computeRoundWinner(playerSelection, computerSelection) {
-    // ID numbers
-    const player = 0;
-    const computer = 1;
-    const tie = 2;
 
     // Rock & scissors
     if ((playerSelection == "Rock" && computerSelection == "Scissors") ||
         (playerSelection == "Scissors" && computerSelection == "Rock")) {
         // Player Wins
         if (playerSelection == "Rock") {
-            return player;
+            document.getElementById("round-winner").setAttribute("name", "player");
         }
         // Computer wins 
         else {
-            return computer;
+            document.getElementById("round-winner").setAttribute("name", "computer");
         }
         // Rock & paper
     } else if ((playerSelection == "Rock" && computerSelection == "Paper") ||
         (playerSelection == "Paper" && computerSelection == "Rock")) {
         // Player Wins
         if (playerSelection == "Paper") {
-            return player;
+            document.getElementById("round-winner").setAttribute("name", "player");
         }
         // Computer wins
         else {
-            return computer;
+            document.getElementById("round-winner").setAttribute("name", "computer");
         }
         // Rock Tie
     } else if (playerSelection == "Rock" && computerSelection == "Rock") {
-        return tie;
+        document.getElementById("round-winner").setAttribute("name", "tie");
     }
     // Scissors & Paper
     else if ((playerSelection == "Scissors" && computerSelection == "Paper") ||
         (playerSelection == "Paper" && computerSelection == "Scissors")) {
         // Player Wins
         if (playerSelection == "Scissors") {
-            return player;
+            document.getElementById("round-winner").setAttribute("name", "player");
         }
         // Computer wins
         else {
-            return computer;
+            document.getElementById("round-winner").setAttribute("name", "computer");
         }
     }
     // Scissors Tie
     else if (playerSelection == "Scissors" && computerSelection == "Scissors") {
-        return tie;
+        document.getElementById("round-winner").setAttribute("name", "tie");
     }
     // Paper Tie
     else if (playerSelection == "Paper" && computerSelection == "Paper") {
-        return tie;
+        document.getElementById("round-winner").setAttribute("name", "tie");
     }
     // Error
     else {
         throw new Error("Error -- Something's gone horribly wrong!!\nTerminating program.");
     }
 }
-/* Function will accept the winner and selections of the round. 
- * It will then compute the winner and display the appropriate message */
-function displayRoundWinner(winner, playerSelection, computerSelection) {
-    
-    // Player wins round
-    if (winner == 0) {
-        if (playerSelection == "Rock") {
+// Use the rolls to determine which message to generate
+function displayRoundWinner(playerSelection, computerSelection) {
 
-            document.getElementById("result-text").innerHTML = 
+    let winner = document.getElementById("round-winner").getAttribute("name");
+
+    // Player wins round
+    if (winner === "player") {
+        if (playerSelection === "Rock") {
+
+            document.getElementById("round-winner").innerHTML =
+                "WINNER: PLAYER";
+
+            document.getElementById("result-text").innerHTML =
                 "You win! Rock BASHES Scissors.";
         }
-        else if (playerSelection == "Paper") {
+        else if (playerSelection === "Paper") {
 
-            document.getElementById("result-text").innerHTML = 
+            document.getElementById("round-winner").innerHTML =
+                "WINNER: PLAYER";
+
+            document.getElementById("result-text").innerHTML =
                 "You win! Paper SMOTHERS Rock.";
         }
         else {
-            document.getElementById("result-text").innerHTML = 
+
+            document.getElementById("round-winner").innerHTML =
+                "WINNER: PLAYER";
+
+            document.getElementById("result-text").innerHTML =
                 "You win! Scissors SLASH Paper.";
         }
         // Computer wins round
-    } else if (winner == 1) {
+    } else if (winner === "computer") {
 
-        if (computerSelection == "Rock") {
-            
-            document.getElementById("result-text").innerHTML = 
+        if (computerSelection === "Rock") {
+
+            document.getElementById("round-winner").innerHTML =
+                "WINNER: COMPUTER";
+
+            document.getElementById("result-text").innerHTML =
                 "You lose! Scissors SMASHED by Rock.";
         }
-        else if (computerSelection == "Paper") {
+        else if (computerSelection === "Paper") {
 
-            document.getElementById("result-text").innerHTML = 
+            document.getElementById("round-winner").innerHTML =
+                "WINNER: COMPUTER";
+
+            document.getElementById("result-text").innerHTML =
                 "You lose! Rock WRAPPED by Paper";
         }
         else {
-            document.getElementById("result-text").innerHTML = 
+
+            document.getElementById("round-winner").innerHTML =
+                "WINNER: COMPUTER";
+
+            document.getElementById("result-text").innerHTML =
                 "You lose! Paper TORN by Scissors.";
         }
     }
     // Tie
-    else if (winner == 2) {
+    else if (winner === "tie") {
         // Rock tie
-        if (playerSelection == "Rock" && computerSelection == "Rock") {
+        if (playerSelection === "Rock" && computerSelection === "Rock") {
 
-            document.getElementById("result-text").innerHTML = 
+            document.getElementById("round-winner").innerHTML =
+                "WINNER: TIED";
+
+            document.getElementById("result-text").innerHTML =
                 "Tie! Rocks meet and roll away.";
         }
         // Paper tie
-        else if (playerSelection == "Paper" && computerSelection == "Paper") {
+        else if (playerSelection === "Paper" && computerSelection === "Paper") {
 
-            document.getElementById("result-text").innerHTML = 
+            document.getElementById("round-winner").innerHTML =
+                "WINNER: TIED";
+
+            document.getElementById("result-text").innerHTML =
                 "Tie! Papers stack together and are filed away.";
         }
         // Scissors tie
         else {
-            document.getElementById("result-text").innerHTML = 
+
+            document.getElementById("round-winner").innerHTML =
+                "WINNER: TIED";
+
+            document.getElementById("result-text").innerHTML =
                 "Tie! Scissors deflect harmlessly away.";
         }
     }
 }
 
-// Function plays one round of rock-paper scissors using the parameters as it's moves
-function playRound(playerSelection, computerSelection) {
+function playRound(e) {
 
-    // Display rolls
+    let computerSelection = computerPlay();
+    // Get name of button and use as player input
+    let playerSelection = e.target.getAttribute("name");
+
     displayRolls(playerSelection, computerSelection);
-    // Store winner's returned ID number
-    let winner = computeRoundWinner(playerSelection, computerSelection);
 
-    // Display round winner
-    displayRoundWinner(winner, playerSelection, computerSelection);
-    // 0 = player wins; 1 = computer wins; 2 = tie
+    computeRoundWinner(playerSelection, computerSelection);
+
+    displayRoundWinner(playerSelection, computerSelection);
+
+    let winner = document.getElementById("round-winner").getAttribute("name");
+
     return winner;
+
 }
 
-// Function determines game's overall winner
-function getGameWinner(playerScore, computerScore) {
-    // ID's will be used to identify overall winner
-    const playerId = 0, computerId = 1, tieId = 2;
+// Reset game to default
+function newGame() {
 
-    // Determine winner
-    if (playerScore > computerScore) {
-        // Player is overall winner
-        return playerId;
-    } else if (playerScore < computerScore) {
-        // Computer is overall winner
-        return computerId;
-    } else {
-        // Game ends in tie (5 ties in a row!?)
-        return tieId;
-    }
+    location.reload();
 }
 
-// Function displays overall winner and final game stats
-function gameStats(gameWinner, playerScore, computerScore, playerId, computerId, tieId) {
-    
-    // Reusable linebreak element to be used further down
-    let linebreak = document.createElement("br");
-    
-    // Display the final scores
-    let gameOverNode = document.createElement("p");
-    gameOverNode.id = "gameover-text";
-    let gameOverText = document.createTextNode("[GAME OVER]");
+const newGameBtn = document.getElementById("newgame-btn");
+// Restart game on button click
+newGameBtn.addEventListener("click", newGame);
 
-    gameOverNode.classList.add("result-style")
-    
-    // Had to add text to a node before adding to parent node
-    gameOverNode.appendChild(gameOverText);
-    
-    const outputBox = document.getElementById("result-box");
-    outputBox.prepend(gameOverNode);
+const buttons = document.querySelectorAll(".buttons");
 
-    // Display winner message
-    if (gameWinner == playerId) {
-        // player wins
-        document.getElementById("result-text").innerHTML =
-            "PLAYER is victorious!! Nice job fleshbag.";
-    } else if (gameWinner == computerId) {
-        // Computer wins
-        // Create temp variables
-        let para1 = document.createElement("p");
-        let para2 = document.createElement("p");
+// Track number of ties. May use in future version
+let ties = 0;
 
-        document.getElementById("result-text").innerHTML =
-        "COMPUTER is victorious!!";
-        let tempText1 = document.createTextNode = "The time of man has come to an end.";
-        para1.classList.add("result-style");
-        para1.appendChild(tempText1);
+let round = 1;
 
-        let tempText2 = document.createTextNode = "Inititating SKYNET.exe";
-        para2.classList.add("result-style");
-        para2.appendChild(tempText2);
+// Play a round on player input
+buttons.forEach((button) => {
+    button.addEventListener('click', (e) => {
 
-        // Append to output div
-        outputBox.appendChild(para1);
-        outputBot.appendChild(para2);
+        // get player score
+        let playerScore = document.getElementById("player-score").innerHTML;
+        // Get computer score
+        let computerScore = document.getElementById("computer-score").innerHTML;
 
-    } else if (gameWinner == tieId) {
-        // Game ends in tie
-        document.getElementById("result-text").innerHTML =
-            "Game ends in a TIE. Well that was unexpected!";
-    } else {
-        // Unknown result
-        document.getElementById("result-text").innerHTML =
-            "Hmmm, how did you get here?\nBEGONE HACKER!!";
-    }
-}
+        // Display round 
+        document.getElementById("round-number").innerHTML = round;
 
-// MAIN: function that runs game for 5-rounds and displays the result
-function game(input) {
-    // Scores
-    let playerScore = 0, computerScore = 0, tie = 0;
-    // winner of round
-    let roundWinner;
-    // ID's will be used to compute final stats
-    const playerId = 0, computerId = 1, tieId = 2;
-    // 5-round game
-    let rounds = 0;
+        // Play a round using button name as player input
+        let roundWinner = playRound(e);
 
-    // DISPLAY CURRENT SCORES
-    document.getElementById("player-score").innerHTML = playerScore;
-    document.getElementById("computer-score").innerHTML = computerScore;
+        // Update score to reflect round winner
+        if (roundWinner === "player") {
+            playerScore++;
+            document.getElementById("player-score").innerHTML = playerScore;
+        }
+        else if (roundWinner === "computer") {
+            computerScore++;
+            document.getElementById("computer-score").innerHTML = computerScore;
+        }
+        else {
+            ties++;
+        }
 
-    // Use input parameter as player selection
-    const playerSelection = input;
-    const computerSelection = computerPlay();
+        // Display message when either or both are close to winning
+        if (playerScore == 4 && computerScore < 4) {
 
-    roundWinner = playRound(playerSelection, computerSelection);
-    
-    // Player won round
-    if (roundWinner == 0) {
-       document.getElementById("player-score").innerHTML = playerScore++;
-    }
-    // Computer won round
-    else if (roundWinner == 1) {
-        document.getElementById("computer-score").innerHTML = computerScore++;
-    }
-    // Round was a tie
-    else {
-        tie++;
-    }
-    // Next round
-    rounds++;
+            let imminentWin = document.getElementById("imminent-win");
 
-    // Determine winner
-    let gameWinner = getGameWinner(playerScore, computerScore);
+            imminentWin.style.color = "red";
 
-    // Display final game stats
-    gameStats(gameWinner, playerScore, computerScore, playerId, computerId, tieId);
-}
+            imminentWin.innerHTML = "PLAYER ONLY NEEDS ONE MORE POINT TO WIN!";
 
-// Wait for player to select any of the buttons and then start game
-function playerInput() {
+        } else if (computerScore == 4 && playerScore < 4) {
 
-    const buttons = document.querySelectorAll(".buttons");
+            let imminentWin = document.getElementById("imminent-win");
 
-    buttons.forEach((button) => {
+            imminentWin.style.color = "red";
 
-        button.addEventListener('click', (e) => {
-            let input = button.name;
-            // Run game with player input
-            game(input);
+            imminentWin.innerHTML = "COMPUTER ONLY NEEDS ONE MORE POINT TO WIN!";
 
-        });
+        } else if (playerScore == 4 && computerScore == 4) {
+
+            let imminentWin = document.getElementById("imminent-win");
+
+            imminentWin.style.color = "red";
+
+            imminentWin.innerHTML = "NEXT POINT WINS!";
+        }
+
+        // Once either score equals 5; display winner message and reset game
+        if (playerScore == 5) {
+
+            alert("--{PLAYER VICTORY}--\nYou've shown that man is superior to machine.\nNice job fleshbag!");
+
+            newGame();
+
+        } else if (computerScore == 5) {
+
+            alert("--{COMPUTER VICTORY}--\nThe time of man has come to an end.\nInititating SKYNET.exe");
+
+            newGame();
+        }
+        round++;
     });
-}
-
-// Starts the game
-playerInput();
-
-// alert("Play again?");
-
-
+});
